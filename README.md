@@ -62,4 +62,4 @@ The 'coh3-replay-enhancements' mod used in this application was created by Janne
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU GPLv3 License. See the [LICENSE](LICENSE) file for details.

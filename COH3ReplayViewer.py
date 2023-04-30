@@ -330,7 +330,7 @@ def aboutwindow():
     win_about = Tk()
     win_about.title('A propos')
     
-    name_label=Label(win_about, text="COH 3 Record Viewer", font=("Calibri", 20))
+    name_label=Label(win_about, text="COH 3 Replay Viewer", font=("Calibri", 20))
     name_label.grid(row=1,column=1, padx=30)
     author_label=Label(win_about, text="Auteur : David Germain", font=("Calibri", 11))
     author_label.grid(row=2,column=1, padx=30)

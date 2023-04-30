@@ -1,6 +1,6 @@
-# COH3 Record Viewer
+# COH3 Replay Viewer
 
-COH3 Record Viewer is a Python-based application that allows you to view and manage your Company of Heroes 3 replay files. It provides an easy-to-use interface to track, save, browse, launch, rename, and delete replays. The program also supports the 'coh3-replay-enhancements' mod by Janne252.
+COH3 Replay Viewer is a Python-based application that allows you to view and manage your Company of Heroes 3 replay files. It provides an easy-to-use interface to track, save, browse, launch, rename, and delete replays. The program also supports the 'coh3-replay-enhancements' mod by Janne252.
 
 ## Features
 
@@ -14,13 +14,13 @@ COH3 Record Viewer is a Python-based application that allows you to view and man
 
 ## Installation
 
-1. Download the latest release from the [GitHub Releases](https://github.com/Maxinova/COH3-Record-Viewer/releases) page.
+1. Download the latest release from the [GitHub Releases](https://github.com/Maxinova/COH3-Replay-Viewer/releases) page.
 2. Extract the contents of the zip file to a folder of your choice.
-3. Ensure that the 'Assets' folder is located in the same directory as the COH3RecordViewer executable.
+3. Ensure that the 'Assets' folder is located in the same directory as the COH3ReplayViewer executable.
 
 ## Requirements
 
-To run the COH3 Record Viewer, you will need the following Python libraries:
+To run the COH3 Replay Viewer, you will need the following Python libraries:
 
 - `time`
 - `datetime`
@@ -46,7 +46,7 @@ pip install tkscrolledframe pillow pyperclip psutil
 
 ## Usage
 
-1. Run the COH3RecordViewer executable or the `COH3RecordViewer.py` script.
+1. Run the COH3ReplayViewer executable or the `COH3ReplayViewer.py` script.
 2. The application will display a list of your Company of Heroes 3 replays, along with information such as map, duration, and players.
 3. Use the buttons to launch, rename, or delete replays as needed.
 4. If you have the 'coh3-replay-enhancements' mod installed, you can enable the "Mode 'COH3-Replay-Enhancement'" option to automatically copy the required command to the clipboard when launching a replay.

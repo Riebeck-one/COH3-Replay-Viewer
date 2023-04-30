@@ -94,6 +94,8 @@ def display_text_box(old_file_name):
     global old_file_name_too 
     main_window_coordinates_x = window.geometry().split('+')[1]
     main_window_coordinates_y = window.geometry().split('+')[2]
+    main_window_size_x = window.geometry().split('+')[0].split('x')[0]
+    main_window_size_y = window.geometry().split('+')[0].split('x')[1]
     
     old_file_name_too = old_file_name
     new_file_name = ""
@@ -109,8 +111,8 @@ def display_text_box(old_file_name):
     win_rename.update()
     text_box_width = win_rename.grid_bbox()[2]
     text_box_height = win_rename.grid_bbox()[3]
-    text_box_pos_x = int(int(main_window_coordinates_x)+inner_frame.grid_bbox()[2]/2-text_box_width/2)
-    text_box_pos_y = int(int(main_window_coordinates_y)+inner_frame.grid_bbox()[3]/2-text_box_height/2)
+    text_box_pos_x = int(int(main_window_coordinates_x)+int(main_window_size_x)/2-text_box_width/2)
+    text_box_pos_y = int(int(main_window_coordinates_y)+int(main_window_size_y)/2-text_box_height/2)
     win_rename.geometry(str(text_box_width)+"x"+str(text_box_height)+'+'+str(text_box_pos_x)+'+'+str(text_box_pos_y))
     # win_rename.geometry("300x300+1000+0")
     win_rename.mainloop()
@@ -326,6 +328,8 @@ def callback(url):
 def aboutwindow(): 
     main_window_coordinates_x = window.geometry().split('+')[1]
     main_window_coordinates_y = window.geometry().split('+')[2]
+    main_window_size_x = window.geometry().split('+')[0].split('x')[0]
+    main_window_size_y = window.geometry().split('+')[0].split('x')[1]
     
     win_about = Tk()
     win_about.title('A propos')
@@ -355,8 +359,8 @@ def aboutwindow():
     
     about_box_width = win_about.grid_bbox()[2]
     about_box_height = win_about.grid_bbox()[3]
-    about_box_pos_x = int(int(main_window_coordinates_x)+inner_frame.grid_bbox()[2]/2-about_box_width/2)
-    about_box_pos_y = int(int(main_window_coordinates_y)+inner_frame.grid_bbox()[3]/2-about_box_height/2)
+    about_box_pos_x = int(int(main_window_coordinates_x)+int(main_window_size_x)/2-about_box_width/2)
+    about_box_pos_y = int(int(main_window_coordinates_y)+int(main_window_size_y)/2-about_box_height/2)
     
     win_about.geometry(str(about_box_width)+"x"+str(about_box_height)+'+'+str(about_box_pos_x)+'+'+str(about_box_pos_y))
     win_about.mainloop()
@@ -502,8 +506,10 @@ def close_window():
     global mainwindow_open
     mainwindow_open = False  # turn off while loop
     print("Software closed")
-    window.destroy()
-    exit()
+    while True:
+        window.quit()
+        exit()
+        time.sleep(0.1)
    
 
 playbak_path = buf.value + "\\My Games\\Company of Heroes 3\\playback" #Contient l'emplacement du dossier qui contient les playbacks

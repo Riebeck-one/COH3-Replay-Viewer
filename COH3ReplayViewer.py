@@ -506,10 +506,7 @@ def close_window():
     global mainwindow_open
     mainwindow_open = False  # turn off while loop
     print("Software closed")
-    while True:
-        window.quit()
-        exit()
-        time.sleep(0.1)
+    os._exit(0)
    
 
 playbak_path = buf.value + "\\My Games\\Company of Heroes 3\\playback" #Contient l'emplacement du dossier qui contient les playbacks

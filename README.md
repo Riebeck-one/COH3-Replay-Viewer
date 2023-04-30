@@ -4,7 +4,7 @@ COH3 Record Viewer is a Python-based application that allows you to view and man
 
 ## Features
 
-- Auto save replays at the end of a Company of Heores 3 match.
+- Automatically saves replay files at the end of a game of Company of Heroes 3
 - Browse and view your Company of Heroes 3 replay files in a user-friendly interface
 - Launch replays directly from the application
 - Rename replay files for easier organization
@@ -14,7 +14,7 @@ COH3 Record Viewer is a Python-based application that allows you to view and man
 
 ## Installation
 
-1. Download the latest release from the [GitHub Releases](https://github.com/username/COH3RecordViewer/releases) page.
+1. Download the latest release from the [GitHub Releases](https://github.com/Maxinova/COH3-Record-Viewer/releases) page.
 2. Extract the contents of the zip file to a folder of your choice.
 3. Ensure that the 'Assets' folder is located in the same directory as the COH3RecordViewer executable.
 

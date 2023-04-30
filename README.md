@@ -1,6 +1,3 @@
-# COH3-Record-Viewer
-A simple software to keep track, organize and launch Company of Heroes 3 replays.
-
 # COH3 Record Viewer
 
 COH3 Record Viewer is a Python-based application that allows you to view and manage your Company of Heroes 3 replay files. It provides an easy-to-use interface to track, save, browse, launch, rename, and delete replays. The program also supports the 'coh3-replay-enhancements' mod by Janne252.

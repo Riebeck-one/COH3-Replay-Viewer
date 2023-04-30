@@ -14,13 +14,13 @@ import webbrowser
 import psutil
 import subprocess
 
-##Permet de récupérer l'adresse du dossier "mes documents"
+##Get "My Documents" folder path"
 CSIDL_PERSONAL = 5       # My Documents
 SHGFP_TYPE_CURRENT = 0   # Get current, not default value
 
 buf= ctypes.create_unicode_buffer(ctypes.wintypes.MAX_PATH)
 ctypes.windll.shell32.SHGetFolderPathW(None, CSIDL_PERSONAL, None, SHGFP_TYPE_CURRENT, buf)
-##Permet de récupérer l'adresse du dossier "mes documents"
+##Get "My Documents" folder path"
 
 
 class ToolTip(object): #https://stackoverflow.com/questions/20399243/display-message-when-hovering-over-something-with-mouse-cursor-in-python
@@ -62,7 +62,7 @@ def CreateToolTip(widget, text):
     widget.bind('<Enter>', enter)
     widget.bind('<Leave>', leave)
 
-def returnplayer(line): #Renvoie le nom du joueur et sa nation
+def returnplayer(line): #Return player and faction names
     words = line.split()
     player = [' '.join(words[8:-3]),words[-1]]
     return player
@@ -73,7 +73,7 @@ def returnmap(line):
     
 def Rename_file(event):
     if entry.get() == "":
-        warning = Label(win_rename, text="Le nom du fichier ne peut être vide",fg='red', font=("Calibri", 11))
+        warning = Label(win_rename, text="Filename can't be empty",fg='red', font=("Calibri", 11))
         warning.grid(row = 3, padx=10, sticky = "W")
         win_rename.update()
         win_rename.geometry(str(win_rename.grid_bbox()[2])+"x"+str(win_rename.grid_bbox()[3]))
@@ -98,11 +98,11 @@ def display_text_box(old_file_name):
     old_file_name_too = old_file_name
     new_file_name = ""
     win_rename = Tk()
-    win_rename.title('Renommer le replay')
+    win_rename.title('Rename replay file')
     entry = Entry(win_rename, width = 50)
     entry.insert(0, old_file_name[:-4])
     # Association de l'évènement actionEvent au champ de saisie
-    info = Label(win_rename, text="Nom du nouveau fichier :", font=("Calibri", 11))
+    info = Label(win_rename, text="New file name :", font=("Calibri", 11))
     info.grid(row = 1, sticky = "W", padx=10)
     entry.bind("<Return>", Rename_file) 
     entry.grid(row=2, padx=10, pady = 5) 
@@ -129,14 +129,14 @@ def analyse(warnings_path, playbak_path):
                 for line in f:
                     if 'REC --' in line:
                         isrecord = 1
-                        print("Replay en cours, acquisition annulée")
+                        print("Replay in progress, acquisition canceled")
                         btn1.deselect()
                         COHrunning = 0
                         break
                     if 'GAME -- Scenario' in line:
                         joueurs = []
                         maps = returnmap(line)
-                        print("Partie détectée avec ces paramètres :")
+                        print("Game detected with these parameters")
                         print("   "+line.replace("\n",""))
                         start_time = time.time()
                     if 'GAME -- Human Player' in line or 'GAME -- AI Player' in line:
@@ -155,25 +155,25 @@ def analyse(warnings_path, playbak_path):
                             o.close()
                             addbuttons()   
                         else:
-                            print("Il s'agit certainement d'une partie précédente")
+                            print("It's probably an already finished game")
                             isrecord = 0
                             joueurs = []
                     if 'Application closed without errors' in line:
-                        print("Jeu fermé")
+                        print("Game closed")
                         btn1.deselect()
                         COHrunning = 0
                 time.sleep(1)
             f.close()
     thread_on = 0
     acquisition_on = 0
-    print("Fin de l'acquisition")
+    print("End of acquisition")
 
 
 def Thread_analyse(warnings_path, playbak_path):
     global thread_on
     global acquisition_on
     if var.get() == 1 and thread_on == 0:
-        print("Acquisition lancée")
+        print("Acquisition started")
         acquisition_on = 1
         thread_on = 1
         thread = threading.Thread(target=analyse, args=[warnings_path, playbak_path])
@@ -203,7 +203,7 @@ def removerecord(i, playbak_path):
     try:
         os.remove(playbak_path+"\\"+i[:-4]+".txt")
     except:
-        print("Le fichier data n'existe pas")
+        print("The data file doesn't exist")
     update_window()
 
 def update_window():
@@ -302,7 +302,7 @@ def addbuttons():
         
         renamefile= Button(inner_frame, image = Pen_icon, font=("Calibri", 13),command= lambda filename=i: display_text_box(filename), anchor="center", relief='flat')
         renamefile.grid(row=5+iterate-linenumberingrid,column=1, rowspan=linenumberingrid, sticky = "E")
-        CreateToolTip(renamefile, text = 'Renommer')
+        CreateToolTip(renamefile, text = 'Rename')
         
         window.update()
 
@@ -332,7 +332,7 @@ def aboutwindow():
     
     name_label=Label(win_about, text="COH 3 Replay Viewer", font=("Calibri", 20))
     name_label.grid(row=1,column=1, padx=30)
-    author_label=Label(win_about, text="Auteur : David Germain", font=("Calibri", 11))
+    author_label=Label(win_about, text="Author : David Germain", font=("Calibri", 11))
     author_label.grid(row=2,column=1, padx=30)
     contribute_label=Label(win_about, text="\nContributions :", font=("Calibri", 16))
     contribute_label.grid(row=3,column=1, padx=30)
@@ -341,12 +341,12 @@ def aboutwindow():
     contribute_name2_label=Label(win_about, text="        • ewerybody", font=("Calibri", 11))
     contribute_name2_label.grid(row=5,column=1, padx=30, sticky = W)
     
-    other_software_label=Label(win_about, text="Autres logiciels :", font=("Calibri", 16))
+    other_software_label=Label(win_about, text="Useful softwares :", font=("Calibri", 16))
     other_software_label.grid(row=6,column=1, padx=30)    
     
     COH_replay_enhancer_label=Label(win_about, text="coh3-replay-enhancements :", font=("Calibri", 13))
     COH_replay_enhancer_label.grid(row=7,column=1, padx=30, sticky = W)
-    COH_replay_enhancer_author_label=Label(win_about, text="        • auteur : Janne252", font=("Calibri", 11))
+    COH_replay_enhancer_author_label=Label(win_about, text="        • author : Janne252", font=("Calibri", 11))
     COH_replay_enhancer_author_label.grid(row=8,column=1, padx=30, sticky = W)
     COH_replay_enhancer_link_label=Label(win_about, text="        • https://github.com/Janne252/coh3-replay-enhancements",font=('Calibri', 11), fg="blue", cursor="hand2")
     COH_replay_enhancer_link_label.grid(row=9,column=1, padx=30, sticky = W)
@@ -417,8 +417,8 @@ def generatewindow():
     resized_question_mark = question_mark.resize((30,30), Image.LANCZOS)
     question_mark_icon = ImageTk.PhotoImage(resized_question_mark)
     
-    var = IntVar(value = acquisition_on) #enregistre la valeur du bouton d'acquisition
-    var2 = IntVar(value = replay_mod_on) #enregistre la valeur du bouton de copie
+    var = IntVar(value = acquisition_on) #save the value of the acquisition state
+    var2 = IntVar(value = replay_mod_on) #save the value of the copy button state
     
     sf = ScrolledFrame(window)
     sf.pack(side="top", expand=1, fill="both")
@@ -428,43 +428,43 @@ def generatewindow():
 
     upd = Button(inner_frame, image = Refresh_icon, text="update", font=("Calibri", 10, "bold"), command= lambda : update_window(), relief='flat')
     upd.grid(row=1,column=1, sticky = W)
-    CreateToolTip(upd, text = 'Mettre à jour la liste des fichiers')
+    CreateToolTip(upd, text = 'Update the list of replays')
     
-    open_folder = Button(inner_frame, image = Folder_icon, text="Ouvrir dossier des playbacks", font=("Calibri", 10), command= lambda : subprocess.Popen('explorer '+playbak_path), relief='flat')
+    open_folder = Button(inner_frame, image = Folder_icon, text="Open the replays folder", font=("Calibri", 10), command= lambda : subprocess.Popen('explorer '+playbak_path), relief='flat')
     open_folder.grid(row=1,column=2, sticky = W)
-    CreateToolTip(open_folder, text = 'Ouvrir le dossier des playbacks')
+    CreateToolTip(open_folder, text = 'Open replays folder')
 
-    about_btn = Button(inner_frame, image = question_mark_icon, text="A propos", font=("Calibri", 10), command= aboutwindow, relief='flat')
+    about_btn = Button(inner_frame, image = question_mark_icon, text="About", font=("Calibri", 10), command= aboutwindow, relief='flat')
     about_btn.grid(row=1,column=9, sticky = E)
-    CreateToolTip(about_btn, text = 'A propos')
+    CreateToolTip(about_btn, text = 'About')
 
     lbl=Label(inner_frame, text="Company of Heroes 3 Replay Viewer", fg='red', font=("Calibri", 16))
     lbl.grid(row=1,column=1, columnspan=9)
 
-    btn1=Checkbutton(inner_frame, text="Lancer l'acquisition", font=("Calibri", 13), variable=var, command= lambda : Thread_analyse(warnings_path, playbak_path), anchor="center")
+    btn1=Checkbutton(inner_frame, text="Start acquisition", font=("Calibri", 13), variable=var, command= lambda : Thread_analyse(warnings_path, playbak_path), anchor="center")
     btn1.grid(row=2,column=1, columnspan=4)
 
-    btn2=Checkbutton(inner_frame, text="""Mode 'COH3-Replay-Enhancement'""", font=("Calibri", 13), variable=var2, anchor="center")
+    btn2=Checkbutton(inner_frame, text="""'COH3-Replay-Enhancement' mode""", font=("Calibri", 13), variable=var2, anchor="center")
     btn2.grid(row=2,column=6, columnspan=4)
-    CreateToolTip(btn2, text = """Copie la commande 'dofile('replay-enhancements/init.scar')' dans le presse papier lors du lancement d'un replay.\nUtile si combiné à l'utilisation du mod 'coh3-replay-enhancements' de Janne252""")
+    CreateToolTip(btn2, text = """Copy the command 'dofile('replay-enhancements/init.scar')' in clipboard before starting the replay.\nUseful when combined with the mod 'coh3-replay-enhancements' by Janne252""")
 
 
-    Col1=Label(inner_frame, text="Fichier", fg='red', font=("Calibri", 14), anchor="center")
+    Col1=Label(inner_frame, text="File", fg='red', font=("Calibri", 14), anchor="center")
     Col1.grid(row=3,column=1, columnspan = 2)
     
-    Col2=Label(inner_frame, text="Durée", fg='red', font=("Calibri", 14), anchor="center")
+    Col2=Label(inner_frame, text="Duration", fg='red', font=("Calibri", 14), anchor="center")
     Col2.grid(row=3,column=3)
     
-    Col3=Label(inner_frame, text="Alliés", fg='red', font=("Calibri", 14), anchor="center")
+    Col3=Label(inner_frame, text="Allies", fg='red', font=("Calibri", 14), anchor="center")
     Col3.grid(row=3,column=4, columnspan=2, padx=15)
     
-    Col4=Label(inner_frame, text="Axe", fg='red', font=("Calibri", 14), anchor="center")
+    Col4=Label(inner_frame, text="Axes", fg='red', font=("Calibri", 14), anchor="center")
     Col4.grid(row=3,column=6, columnspan=2, padx=15)
     
     Col5=Label(inner_frame, text="Map", fg='red', font=("Calibri", 14), anchor="center")
     Col5.grid(row=3,column=8, padx=15)
     
-    Col6=Label(inner_frame, text="Supprimer", fg='red', font=("Calibri", 14), anchor="center")
+    Col6=Label(inner_frame, text="Delete", fg='red', font=("Calibri", 14), anchor="center")
     Col6.grid(row=3,column=9, padx=15)
     
     addbuttons()
@@ -501,7 +501,7 @@ def waitforcoh():
 def close_window():
     global mainwindow_open
     mainwindow_open = False  # turn off while loop
-    print("Logiciel fermé")
+    print("Software closed")
     window.destroy()
     exit()
    

@@ -47,9 +47,10 @@ pip install tkscrolledframe pillow pyperclip psutil
 ## Usage
 
 1. Run the COH3ReplayViewer executable or the `COH3ReplayViewer.py` script.
-2. The application will display a list of your Company of Heroes 3 replays, along with information such as map, duration, and players.
-3. Use the buttons to launch, rename, or delete replays as needed.
-4. If you have the 'coh3-replay-enhancements' mod installed, you can enable the "Mode 'COH3-Replay-Enhancement'" option to automatically copy the required command to the clipboard when launching a replay.
+2. The first time you run the program, you will probably not see any stored replays. To start acquiring replays, you'll have to start acquisition ( which is normally done automatically at startup ) and play some games of Company Of Heroes 3. The program will track and save replays of your games and automatically update the interface.
+3. After a first acquition, the application will display a list of your Company of Heroes 3 replays, along with information such as map, duration, and players.
+4. Use the buttons to launch, rename, or delete replays as needed.
+5. If you have the 'coh3-replay-enhancements' mod installed, you can enable the "Mode 'COH3-Replay-Enhancement'" option to automatically copy the required command to the clipboard when launching a replay.
 
 ## Contributions
 
